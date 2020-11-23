@@ -1,0 +1,38 @@
+$(eval $(call addlib,libcloning_apps))
+
+LIBCLONING_APPS_CINCLUDES-y += $(LIBXENPLAT_CINCLUDES-y)
+LIBCLONING_APPS_CINCLUDES-y += -I$(APP_BASE)
+
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/boot.c
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/cmdline.c
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/clone_unikraft.c
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/mem.c
+#LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/mem_unikraft.c
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/mem_posix.c
+ifeq ($(CONFIG_LIBLWIP),y)
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/net.c
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/net_unikraft.c
+endif
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/thread.c
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/os/posix/time.c
+
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/common/mem.c|common
+ifeq ($(CONFIG_LIBLWIP),y)
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/common/net.c|common
+endif
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/common/time.c|common
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/common/profile.c|common
+
+ifeq ($(CONFIG_LIBLWIP),y)
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/server-common.c
+endif
+LIBCLONING_APPS_SRCS-y += $(APP_BASE)/main.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_COUNTER) += $(APP_BASE)/counter.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_MEMORY_OVERHEAD) += $(APP_BASE)/memory-overhead.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_CHILDREN) += $(APP_BASE)/children.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_SLEEPER) += $(APP_BASE)/sleeper.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_SERVER_TCP) += $(APP_BASE)/server-tcp.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_SERVER_UDP) += $(APP_BASE)/server-udp.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_FILES) += $(APP_BASE)/files.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_FUZZ) += $(APP_BASE)/fuzz.c
+LIBCLONING_APPS_SRCS-$(CONFIG_CLONING_APP_MEASURE_FORK) += $(APP_BASE)/measure-fork.c

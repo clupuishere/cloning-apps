@@ -1,0 +1,48 @@
+### Invisible option for dependencies
+config APPCLONING_DEPENDENCIES
+	bool
+	default y
+	select LIBNOLIBC if !HAVE_LIBC
+
+### App configuration
+config LIBCLONING_APPS
+	bool "Cloning applications"
+	default y
+
+if LIBCLONING_APPS
+config CLONING_APP_COUNTER
+	bool "counter"
+	default y
+
+config CLONING_APP_MEMORY_OVERHEAD
+	bool "memory-overhead"
+	default y
+
+config CLONING_APP_CHILDREN
+	bool "children"
+	default y
+
+config CLONING_APP_SLEEPER
+	bool "sleeper"
+	default y
+
+config CLONING_APP_SERVER_TCP
+	bool "server-tcp"
+	default y
+
+config CLONING_APP_SERVER_UDP
+	bool "server-udp"
+	default y
+
+config CLONING_APP_FILES
+	bool "files"
+	default y
+
+config CLONING_APP_FUZZ
+	bool "fuzzer"
+	default y
+
+config CLONING_APP_MEASURE_FORK
+	bool "measure-fork"
+	default y
+endif

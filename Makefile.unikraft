@@ -1,0 +1,13 @@
+UK_ROOT ?= $(PWD)/../../unikraft.git
+UK_LIBS ?= $(PWD)/../../libs
+#LIBS :=
+#LIBS := $(UK_LIBS)/pthread-embedded:$(UK_LIBS)/newlib:$(UK_LIBS)/lwip:$(UK_LIBS)/redis
+#LIBS := $(UK_LIBS)/pthread-embedded:$(UK_LIBS)/newlib:$(UK_LIBS)/lwip:$(UK_LIBS)/intel-intrinsics:$(UK_LIBS)/openssl:$(UK_LIBS)/zlib:$(UK_LIBS)/libuuid:$(UK_LIBS)/python3:$(UK_LIBS)/gcc:$(UK_LIBS)/libunwind:$(UK_LIBS)/compiler-rt
+DEPS := $(UK_LIBS)/pthread-embedded:$(UK_LIBS)/newlib:$(UK_LIBS)/lwip:$(UK_LIBS)/mimalloc:$(UK_LIBS)/tinyalloc
+LIBS := $(DEPS)
+
+all:
+	@+make -C $(UK_ROOT) A=$(PWD) L=$(LIBS)
+
+$(MAKECMDGOALS):
+	@+make -C $(UK_ROOT) A=$(PWD) L=$(LIBS) $(MAKECMDGOALS)
