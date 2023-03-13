@@ -25,7 +25,6 @@ script in our [experiments repo](https://github.com/nephele-vm/experiments).
 
 ```
 make <other parameters ..>  CLONING_APPS_DIR=$CLONING_APPS_DIR APP=server-udp
-
 ```
 
 ## Unikraft
