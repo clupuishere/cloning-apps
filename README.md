@@ -21,10 +21,11 @@ Our modified [Mini-OS](https://github.com/nephele-vm/mini-os) can be built
 together with the cloning applications by setting the `CLONING_APPS_DIR` and
 `APP` environment variables. For a thorough example, please check the
 [build.sh](https://github.com/nephele-vm/experiments/blob/main/build/build.sh)
-script in our [experiments repo](https://github.com/nephele-vm/experiments).
+script in our [experiments repo](https://github.com/nephele-vm/experiments). To
+build a Mini-OS image, run the following command in the Mini-OS tree:
 
 ```
-make <other parameters ..>  CLONING_APPS_DIR=$CLONING_APPS_DIR APP=server-udp
+make <other parameters ..>  CLONING_APPS_DIR=<path> APP=server-udp
 ```
 
 ## Unikraft
